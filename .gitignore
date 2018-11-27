@@ -1,0 +1,7 @@
+# Dependancies
+node_modules/
+
+# Transpiled code (babel's output)
+dist/
+
+package-lock.json
