@@ -7,4 +7,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const { PORT, MONGO_URI } = process.env;
-export { PORT, MONGO_URI };
+const mongoConnectionOptions = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: true,
+};
+export { PORT, MONGO_URI, mongoConnectionOptions };
