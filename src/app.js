@@ -11,6 +11,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(helmet());
 
+app.set('view engine', 'ejs');
 app.use('/', router);
 
 // General error handler
