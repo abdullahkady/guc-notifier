@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && node dist/server.js",
-    "build": "rimraf dist/ && babel src --out-dir dist",
-    "precommit": "lint-staged"
+    "build": "rimraf dist/ && babel src --out-dir dist"
   },
   "repository": {
     "type": "git",
@@ -43,5 +42,10 @@
     "*.js": [
       "eslint"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
