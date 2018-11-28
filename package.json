@@ -18,6 +18,10 @@
     "url": "https://github.com/AbdullahKady/guc-coursework-notifier/issues"
   },
   "homepage": "https://github.com/AbdullahKady/guc-coursework-notifier#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "mongoose": "^5.3.14"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
