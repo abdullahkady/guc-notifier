@@ -3,16 +3,18 @@ import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import { NOT_FOUND, BAD_REQUEST } from 'http-status';
+import path from 'path';
 import router from './router';
 
+const staticDirectory = path.join(__dirname, '../public');
 const app = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(helmet());
-
-app.set('view engine', 'ejs');
 app.use('/', router);
+
+app.use(express.static(staticDirectory));
 
 // General error handler
 app.use((err, req, res, next) => {
