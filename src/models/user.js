@@ -5,6 +5,7 @@ const courseWorkSchema = new mongoose.Schema(
   {
     type: { type: String, required: true },
     grade: { type: Number, required: true },
+    maximumGrade: { type: Number, required: true },
   },
   { _id: false },
 );
