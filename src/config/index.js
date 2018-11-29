@@ -10,6 +10,6 @@ const { PORT, MONGO_URI } = process.env;
 const mongoConnectionOptions = {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useFindAndModify: true,
+  useFindAndModify: false,
 };
 export { PORT, MONGO_URI, mongoConnectionOptions };
