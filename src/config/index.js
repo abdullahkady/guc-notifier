@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const {
-  PORT, MONGO_URI, GUC_GRAPHQL_URI, ENCRYPTION_SECRET,
+  PORT, MONGO_URI, COURSEWORK_URI, ENCRYPTION_SECRET,
 } = process.env;
 const mongoConnectionOptions = {
   useNewUrlParser: true,
@@ -16,5 +16,5 @@ const mongoConnectionOptions = {
 };
 
 export {
-  PORT, MONGO_URI, mongoConnectionOptions, ENCRYPTION_SECRET, GUC_GRAPHQL_URI,
+  PORT, MONGO_URI, mongoConnectionOptions, ENCRYPTION_SECRET, COURSEWORK_URI,
 };
