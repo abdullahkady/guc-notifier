@@ -1,24 +1,16 @@
 import axios from 'axios';
 import { CREATED, UNAUTHORIZED } from 'http-status';
-import { GUC_GRAPHQL_URI } from './config';
-import { generateGraphQL } from './utils';
+import { COURSEWORK_URI } from './config';
 import User from './models/user';
 
-const getCourses = async (user, pass) => {
-  const query = {
-    query: generateGraphQL(user, pass),
-  };
-
-  try {
-    const { data } = await axios.post(GUC_GRAPHQL_URI, query);
-    const studentData = data.data.student;
-    if (!studentData.isAuthorized) {
-      throw new Error('Invalid credentials');
-    }
-    return studentData.courses;
-  } catch (err) {
+const getCourses = async (username, password) => {
+  const { status, data } = await axios.post(COURSEWORK_URI, { username, password });
+  if (status === UNAUTHORIZED) {
+    const err = new Error('Invalid credentials');
+    err.status = UNAUTHORIZED;
     throw err;
   }
+  return data.courses;
 };
 
 const subscribeUser = async (req, res, next) => {
@@ -28,9 +20,6 @@ const subscribeUser = async (req, res, next) => {
   try {
     courses = await getCourses(username, password);
   } catch (err) {
-    if (err.message === 'Invalid credentials') {
-      err.status = UNAUTHORIZED;
-    }
     return next(err);
   }
 
