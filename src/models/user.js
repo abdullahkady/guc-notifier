@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { encrypt, decrypt } from '../utils/encryption';
+import { encrypt } from '../utils';
 
 const courseWorkSchema = new mongoose.Schema(
   {
@@ -43,11 +43,6 @@ userSchema.pre('findOneAndUpdate', async function (next) {
   this.getUpdate().password = hash;
   return next();
 });
-
-// Retrieve the password in plain text format
-userSchema.methods.getPlainTextPassword = async function () {
-  return decrypt(this.password);
-};
 
 const User = mongoose.model('User', userSchema);
 
