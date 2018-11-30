@@ -4,13 +4,18 @@ import { COURSEWORK_URI } from './config';
 import User from './models/user';
 
 const getCourses = async (username, password) => {
-  const { status, data } = await axios.post(COURSEWORK_URI, { username, password });
-  if (status === UNAUTHORIZED) {
-    const err = new Error('Invalid credentials');
-    err.status = UNAUTHORIZED;
-    throw err;
+  try {
+    const { data } = await axios.post(COURSEWORK_URI, { username, password }, {});
+    return data.courses;
+  } catch ({ response }) {
+    const error = new Error();
+    const { status } = response;
+    if (status === UNAUTHORIZED) {
+      error.message = 'Invalid credentials';
+    }
+    error.status = status;
+    throw error;
   }
-  return data.courses;
 };
 
 const subscribeUser = async (req, res, next) => {
