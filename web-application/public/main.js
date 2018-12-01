@@ -1,7 +1,8 @@
+/* eslint-disable */
 const form = document.querySelector('#form');
 const API_URI = 'http://localhost:3000';
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', e => {
   const formData = new FormData(e.target);
   const payload = {
     username: formData.get('username'),
