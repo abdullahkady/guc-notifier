@@ -4,7 +4,7 @@ import { UNAUTHORIZED } from 'http-status';
 import {
   MONGO_URI,
   mongoConnectionOptions,
-  USERS_CHECK_INTERVAL,
+  USERS_CHECK_INTERVAL_SECS,
   COURSEWORK_URI,
   POLLING_FREQUENCY_MINS,
 } from './config';
@@ -97,7 +97,7 @@ const bootApplication = async () => {
     );
 
     handleReadyUsers();
-    setInterval(handleReadyUsers, USERS_CHECK_INTERVAL);
+    setInterval(handleReadyUsers, USERS_CHECK_INTERVAL_SECS * 1000);
     console.log('Started application successfully');
   } catch (error) {
     throw error;
