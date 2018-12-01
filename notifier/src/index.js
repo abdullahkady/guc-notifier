@@ -2,7 +2,11 @@ import mongoose from 'mongoose';
 import axios from 'axios';
 import { UNAUTHORIZED } from 'http-status';
 import {
-  MONGO_URI, mongoConnectionOptions, CHECK_INTERVAL, COURSEWORK_URI,
+  MONGO_URI,
+  mongoConnectionOptions,
+  USERS_CHECK_INTERVAL,
+  COURSEWORK_URI,
+  POLLING_FREQUENCY_MINS,
 } from './config';
 import User from './user';
 
@@ -65,7 +69,7 @@ const checkUsersGrades = async (user) => {
       console.log('New grades: ', newGrades);
     }
 
-    user.nextCheckTimestamp = minutesFromNow(2);
+    user.nextCheckTimestamp = minutesFromNow(POLLING_FREQUENCY_MINS);
     user.latestGrades = retrivedCoursework;
     await user.save();
   } catch (error) {
@@ -93,7 +97,7 @@ const bootApplication = async () => {
     );
 
     handleReadyUsers();
-    setInterval(handleReadyUsers, CHECK_INTERVAL);
+    setInterval(handleReadyUsers, USERS_CHECK_INTERVAL);
     console.log('Started application successfully');
   } catch (error) {
     throw error;

@@ -7,8 +7,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const {
-  MONGO_URI, COURSEWORK_URI, ENCRYPTION_SECRET, CHECK_INTERVAL,
+  MONGO_URI,
+  COURSEWORK_URI,
+  ENCRYPTION_SECRET,
+  USERS_CHECK_INTERVAL,
+  POLLING_FREQUENCY_MINS,
 } = process.env;
+
 const mongoConnectionOptions = {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -16,5 +21,10 @@ const mongoConnectionOptions = {
 };
 
 export {
-  MONGO_URI, mongoConnectionOptions, ENCRYPTION_SECRET, COURSEWORK_URI, CHECK_INTERVAL,
+  MONGO_URI,
+  mongoConnectionOptions,
+  ENCRYPTION_SECRET,
+  COURSEWORK_URI,
+  USERS_CHECK_INTERVAL,
+  POLLING_FREQUENCY_MINS,
 };
