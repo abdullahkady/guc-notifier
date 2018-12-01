@@ -9,6 +9,7 @@ import {
   POLLING_FREQUENCY_MINS,
 } from './config';
 import User from './user';
+import { emailUnsubscriptionNotification, emailNewGrades } from './utils/mail';
 
 const getCourses = async (username, password) => {
   try {
@@ -47,8 +48,7 @@ const compareGrades = (oldCourses, newCourses) => {
           // Push the new grade to the appropriate course in the result array
           const courseEntryInResult = result.find(course => course.code === newCourse.code);
           courseEntryInResult.coursework.push({
-            type: newCourse.code,
-            coursework: newGrade,
+            ...newGrade,
           });
         }
       });
@@ -65,8 +65,7 @@ const checkUsersGrades = async (user) => {
     const newGrades = compareGrades(user.latestGrades, retrivedCoursework);
 
     if (newGrades.length > 0) {
-      // TODO: Send an email
-      console.log('New grades: ', newGrades);
+      await emailNewGrades(user.email, newGrades);
     }
 
     user.nextCheckTimestamp = minutesFromNow(POLLING_FREQUENCY_MINS);
@@ -75,7 +74,7 @@ const checkUsersGrades = async (user) => {
   } catch (error) {
     if (error.status === UNAUTHORIZED) {
       const { email } = await User.findOneAndDelete({ username: user.username });
-      // TODO: Send him an email stating that he has been unsubscribed
+      await emailUnsubscriptionNotification(email);
     }
   }
 };
