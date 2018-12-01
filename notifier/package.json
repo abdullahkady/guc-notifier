@@ -1,0 +1,49 @@
+{
+  "name": "guc-coursework-notifier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run --silent serve",
+    "serve": "npm run build && node dist/index.js",
+    "build": "rimraf dist/ && babel src --out-dir dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdullahKady/guc-coursework-notifier.git"
+  },
+  "author": "Abdullah Elkady <abdullahkady@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbdullahKady/guc-coursework-notifier/issues"
+  },
+  "homepage": "https://github.com/AbdullahKady/guc-coursework-notifier#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.1.0",
+    "http-status": "^1.3.1",
+    "mongoose": "^5.3.14"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
+    "rimraf": "^2.6.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
