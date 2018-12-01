@@ -19,6 +19,40 @@ const getCourses = async (username, password) => {
   }
 };
 
+const compareGrades = (oldCourses, newCourses) => {
+  const result = [];
+  newCourses.forEach((newCourse) => {
+    const matchingOldCourse = oldCourses.find(course => course.code === newCourse.code);
+    if (!matchingOldCourse) {
+      // Course not found, so all of it's grades should be returned
+      result.push(newCourse);
+    } else {
+      // Loop through each grade of the retrieved course
+      newCourse.coursework.forEach((newGrade) => {
+        const isOld = matchingOldCourse.coursework.find(
+          oldGrade => oldGrade.type === newGrade.type && oldGrade.grade === newGrade.grade,
+        );
+        if (!isOld) {
+          if (!result.find(course => course.code === newCourse.code)) {
+            // If it's the first NEW grade for this course, push the course entry in the result
+            result.push({
+              code: newCourse.code,
+              coursework: [],
+            });
+          }
+          // Push the new grade to the appropriate course in the result array
+          const courseEntryInResult = result.find(course => course.code === newCourse.code);
+          courseEntryInResult.coursework.push({
+            type: newCourse.code,
+            coursework: newGrade,
+          });
+        }
+      });
+    }
+  });
+  return result;
+};
+
 const checkUsersGrades = async (user) => {
   try {
     const retrivedCoursework = await getCourses(user.username, await user.getPlainTextPassword());
