@@ -56,7 +56,16 @@ const compareGrades = (oldCourses, newCourses) => {
 const checkUsersGrades = async (user) => {
   try {
     const retrivedCoursework = await getCourses(user.username, await user.getPlainTextPassword());
-    // Compare grades and update database
+    const newGrades = compareGrades(user.latestGrades, retrivedCoursework);
+
+    if (newGrades.length > 0) {
+      // TODO: Send an email
+      console.log('New grades: ', newGrades);
+    }
+
+    user.nextCheckTimestamp = new Date(new Date().getTime() + 2 * 60000);
+    user.latestGrades = retrivedCoursework;
+    await user.save();
   } catch (error) {
     if (error.status === UNAUTHORIZED) {
       // TODO: Remove the user from the database since his password expired
