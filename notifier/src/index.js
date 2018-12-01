@@ -53,6 +53,8 @@ const compareGrades = (oldCourses, newCourses) => {
   return result;
 };
 
+const minutesFromNow = minutes => new Date(new Date().getTime() + minutes * 60000);
+
 const checkUsersGrades = async (user) => {
   try {
     const retrivedCoursework = await getCourses(user.username, await user.getPlainTextPassword());
@@ -63,7 +65,7 @@ const checkUsersGrades = async (user) => {
       console.log('New grades: ', newGrades);
     }
 
-    user.nextCheckTimestamp = new Date(new Date().getTime() + 2 * 60000);
+    user.nextCheckTimestamp = minutesFromNow(2);
     user.latestGrades = retrivedCoursework;
     await user.save();
   } catch (error) {
