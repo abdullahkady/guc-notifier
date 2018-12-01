@@ -74,7 +74,8 @@ const checkUsersGrades = async (user) => {
     await user.save();
   } catch (error) {
     if (error.status === UNAUTHORIZED) {
-      // TODO: Remove the user from the database since his password expired
+      const { email } = await User.findOneAndDelete({ username: user.username });
+      // TODO: Send him an email stating that he has been unsubscribed
     }
   }
 };
