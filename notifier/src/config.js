@@ -12,6 +12,7 @@ const {
   ENCRYPTION_SECRET,
   USERS_CHECK_INTERVAL_SECS = 10,
   POLLING_FREQUENCY_MINS = 20,
+  SENDGRID_API_KEY,
 } = process.env;
 
 const mongoConnectionOptions = {
@@ -20,11 +21,15 @@ const mongoConnectionOptions = {
   useFindAndModify: false,
 };
 
+const applicationEmailAddress = 'dontreply@guc-notifier.com';
+
 export {
+  applicationEmailAddress,
   MONGO_URI,
   mongoConnectionOptions,
   ENCRYPTION_SECRET,
   COURSEWORK_URI,
   USERS_CHECK_INTERVAL_SECS,
   POLLING_FREQUENCY_MINS,
+  SENDGRID_API_KEY,
 };
