@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { UNAUTHORIZED } from 'http-status';
-import { MONGO_URI, mongoConnectionOptions } from './config';
+import { MONGO_URI, mongoConnectionOptions, CHECK_INTERVAL } from './config';
 import User from './user';
 
 const checkUsersGrades = async (user) => {
@@ -31,7 +31,7 @@ const bootApplication = async () => {
     );
 
     handleReadyUsers();
-    setInterval(handleReadyUsers, 15000);
+    setInterval(handleReadyUsers, CHECK_INTERVAL);
     console.log('Started application successfully');
   } catch (error) {
     throw error;
