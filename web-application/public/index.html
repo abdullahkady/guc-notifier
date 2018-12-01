@@ -11,26 +11,30 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
-    <!-- AXIOS IMPORT, FOR API CALLS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <!-- BOOTSTRAP CDN -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="jumbotron">
-      <form id="form">
-        <div class="text-center">
-          <div class="row">
-            <div class="col">
-              <label for="username">Username</label>
+    <div class="container">
+      <h1 class="form-heading">GUC notifier :)</h1>
+      <div class="login-form">
+        <div class="main-div">
+          <div class="panel">
+            <h2>Subscribe</h2>
+            <p>Enter your GUC username and password</p>
+          </div>
+          <form id="form">
+            <div class="form-group">
               <input
                 name="username"
                 type="text"
                 class="form-control"
                 id="username"
-                placeholder="john.doe"
+                placeholder="Username"
               />
             </div>
-            <div class="col">
-              <label for="password">Password</label>
+
+            <div class="form-group">
               <input
                 name="password"
                 type="password"
@@ -39,24 +43,29 @@
                 placeholder="Password"
               />
             </div>
-            <div class="col">
-              <label for="email">Email</label>
+            <div class="form-group">
               <input
                 name="email"
                 type="text"
                 class="form-control"
                 id="email"
-                placeholder="john@gmail.com"
+                placeholder="Your email address"
               />
             </div>
-          </div>
+            <div class="panel">
+              <p>Enter an email to recieve your notifications</p>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
-        <hr />
-        <div class="text-center">
-          <button id="submit-button" class="btn btn-primary">Submit</button>
-        </div>
-      </form>
+        <p class="botto-text">
+          Made with &hearts; by
+          <a href="https://github.com/AbdullahKady">Abdullah Elkady</a>
+        </p>
+      </div>
     </div>
   </body>
+  <!-- AXIOS IMPORT, FOR API CALLS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
   <script src="main.js"></script>
 </html>
