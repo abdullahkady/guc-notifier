@@ -2,7 +2,8 @@
 const form = document.querySelector('#form');
 const button = document.querySelector('#submit-button');
 const spinner = document.querySelector('#spinner');
-const API_URI = 'http://localhost:3000';
+// Retrieve the host dynamically, without the usage of a JS bundler
+const API_URI = window.location.href;
 
 const toggleSpinner = () => {
   button.hidden = !button.hidden;
