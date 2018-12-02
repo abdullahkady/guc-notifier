@@ -68,7 +68,6 @@ const checkUsersGrades = async (user) => {
       await emailNewGrades(user.email, newGrades);
     }
 
-    user.nextCheckTimestamp = minutesFromNow(POLLING_FREQUENCY_MINS);
     user.latestGrades = retrivedCoursework;
     await user.save();
   } catch (error) {
@@ -79,6 +78,12 @@ const checkUsersGrades = async (user) => {
   }
 };
 
+const handleUser = async (user) => {
+  user.nextCheckTimestamp = minutesFromNow(POLLING_FREQUENCY_MINS);
+  await user.save();
+  await checkUsersGrades(user);
+};
+
 const handleReadyUsers = async () => {
   const users = await User.find({
     nextCheckTimestamp: {
@@ -86,7 +91,7 @@ const handleReadyUsers = async () => {
     },
   });
 
-  users.forEach(checkUsersGrades);
+  users.forEach(handleUser);
 };
 
 const bootApplication = async () => {
