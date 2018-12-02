@@ -13,6 +13,7 @@ const {
   USERS_CHECK_INTERVAL_SECS = 10,
   POLLING_FREQUENCY_MINS = 20,
   SENDGRID_API_KEY,
+  EMAIL_ADDRESS,
 } = process.env;
 
 const mongoConnectionOptions = {
@@ -21,7 +22,7 @@ const mongoConnectionOptions = {
   useFindAndModify: false,
 };
 
-const applicationEmailAddress = 'dontreply@guc-notifier.com';
+const applicationEmailAddress = EMAIL_ADDRESS;
 
 export {
   applicationEmailAddress,
