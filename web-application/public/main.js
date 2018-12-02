@@ -21,7 +21,20 @@ form.addEventListener('submit', e => {
 
   axios
     .post(API_URI, payload)
-    .then(response => {})
-    .catch(response => {})
+    .then(response => {
+      swal(
+        'All done!',
+        'Thanks for subscribing! You will recieve a message whenever new grades are posted.',
+        'success',
+      );
+    })
+    .catch(({ response }) => {
+      const { status } = response;
+      let message = 'Something went wrong :(';
+      if (status === 401) {
+        message = "Your request couldn't go through, your GUC credentials are invalid.";
+      }
+      swal('Oops!', message, 'error');
+    })
     .finally(toggleSpinner);
 });
