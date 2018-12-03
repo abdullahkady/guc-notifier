@@ -13,7 +13,7 @@
     "url": "git+https://github.com/AbdullahKady/guc-coursework-notifier.git"
   },
   "author": "Abdullah Elkady <abdullahkady@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/AbdullahKady/guc-coursework-notifier/issues"
   },
