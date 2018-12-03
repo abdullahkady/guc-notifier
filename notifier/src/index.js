@@ -5,7 +5,7 @@ import {
   MONGO_URI,
   mongoConnectionOptions,
   USERS_CHECK_INTERVAL_SECS,
-  COURSEWORK_URI,
+  COURSEWORK_API_URI,
   POLLING_FREQUENCY_MINS,
 } from './config';
 import User from './user';
@@ -13,7 +13,7 @@ import { emailUnsubscriptionNotification, emailNewGrades } from './utils/mail';
 
 const getCourses = async (username, password) => {
   try {
-    const { data } = await axios.post(COURSEWORK_URI, { username, password });
+    const { data } = await axios.post(COURSEWORK_API_URI, { username, password });
     return data.courses;
   } catch ({ response }) {
     // Axios throws an error with the response object

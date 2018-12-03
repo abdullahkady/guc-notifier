@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { CREATED, UNAUTHORIZED } from 'http-status';
-import { COURSEWORK_URI } from './config';
+import { COURSEWORK_API_URI } from './config';
 import User from './models/user';
 
 const getCourses = async (username, password) => {
   try {
-    const { data } = await axios.post(COURSEWORK_URI, { username, password }, {});
+    const { data } = await axios.post(COURSEWORK_API_URI, { username, password }, {});
     return data.courses;
   } catch ({ response }) {
     const error = new Error();
