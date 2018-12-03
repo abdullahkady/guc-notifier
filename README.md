@@ -1,5 +1,8 @@
-<h1 align="center">GUC Coursework Notifier</h1>
-<img src="/web-application/public/favicon.png"/>
+<h1 align="center">
+  <img src="/web-application/public/favicon.png"/>
+  GUC Coursework Notifier
+  <img src="/web-application/public/favicon.png"/>
+</h1>
 
 <p align="center">Get email notifications when your grades are updated!</p>
 
