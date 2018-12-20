@@ -17,7 +17,7 @@ const emailUnsubscriptionNotification = (email) => {
 const generateGradesMarkup = (grades) => {
   let content = '<h1>New grades are out !</h1> <br />';
   grades.forEach((course) => {
-    content += `<h3>${course.code}</h3><hr />`;
+    content += `<h3><strong>${course.code}</strong> - ${course.name}</h3><hr />`;
     content += '<ul>';
     course.coursework.forEach(({ type, grade, maximumGrade }) => {
       content += '<li>';

@@ -42,6 +42,7 @@ const compareGrades = (oldCourses, newCourses) => {
             // If it's the first NEW grade for this course, push the course entry in the result
             result.push({
               code: newCourse.code,
+              name: newCourse.name,
               coursework: [],
             });
           }

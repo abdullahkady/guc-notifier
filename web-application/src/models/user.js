@@ -13,6 +13,7 @@ const courseWorkSchema = new mongoose.Schema(
 const gradesSchema = new mongoose.Schema(
   {
     code: { type: String },
+    name: { type: String },
     coursework: { type: [courseWorkSchema] },
   },
   { _id: false },
