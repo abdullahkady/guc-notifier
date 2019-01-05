@@ -16,7 +16,7 @@ Try out the [live demo](TODO), just sign up using your GUC credentials (username
 
 ### Requirements:
 
-The project <b>assumes</b> a working [guc-coursework-api](https://github.com/AbdullahKady/guc-coursework-api) instance, where you specify the API URI in the environment.
+The project <b>assumes</b> a working [guc-api](https://github.com/AbdullahKady/guc-api) instance, where you specify the API URI in the environment.
 
 ## Development
 
