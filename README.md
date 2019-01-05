@@ -1,6 +1,6 @@
 <h1 align="center">
   <img src="/web-application/public/favicon.png"/>
-  GUC Coursework Notifier
+  GUC Notifier
   <img src="/web-application/public/favicon.png"/>
 </h1>
 
