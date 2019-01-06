@@ -48,9 +48,7 @@ const compareGrades = (oldCourses, newCourses) => {
           }
           // Push the new grade to the appropriate course in the result array
           const courseEntryInResult = result.find(course => course.code === newCourse.code);
-          courseEntryInResult.coursework.push({
-            ...newGrade,
-          });
+          courseEntryInResult.coursework.push(newGrade);
         }
       });
     }
