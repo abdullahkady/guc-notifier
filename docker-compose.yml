@@ -30,5 +30,9 @@ services:
 
   mongo:
     image: mongo
-    ports:
-      - "27017:27017"
+
+    # MAP IT TO LOCALHOST JUST IN CASE YOU WANT
+    # TO MONITOR/INTERACT WITH THE DB
+    # UNCOMMENT BELOW IF REQUIRED
+    # ports:
+    # - "27017:27017"
