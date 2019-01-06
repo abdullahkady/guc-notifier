@@ -1,0 +1,34 @@
+version: "3"
+services:
+  web:
+    build: ./guc-notifier/web-application
+    environment:
+      # MAPPING TO THE CORRECT DOCKER NETWORK
+      - MONGO_URI=mongodb://mongo:27017/guc-notifier
+      - COURSEWORK_API_URI=http://guc-api/coursework/
+    depends_on:
+      - guc-api
+      - mongo
+    ports:
+      # APPLICATION EXPOSED ON HOST PORT 80
+      - "80:3000"
+
+  notifier:
+    build: ./guc-notifier/notifier
+    environment:
+      # MAPPING TO THE CORRECT DOCKER NETWORK
+      - MONGO_URI=mongodb://mongo:27017/guc-notifier
+      - COURSEWORK_API_URI=http://guc-api/coursework/
+    depends_on:
+      - guc-api
+      - mongo
+
+  guc-api:
+    build: ./guc-api
+    environment:
+      - PORT=80 # RUN INTERNALLY ON PORT 80
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
