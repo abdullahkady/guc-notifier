@@ -61,13 +61,13 @@ const minutesFromNow = minutes => new Date(new Date().getTime() + minutes * 6000
 const checkUsersGrades = async (user) => {
   try {
     const retrivedCoursework = await getCourses(user.username, await user.getPlainTextPassword());
-    const newGrades = compareGrades(user.latestGrades, retrivedCoursework);
+    const newGrades = compareGrades(user.latestGrades.coursework, retrivedCoursework);
 
     if (newGrades.length > 0) {
       await emailNewGrades(user.email, newGrades);
     }
 
-    user.latestGrades = retrivedCoursework;
+    user.latestGrades.coursework = retrivedCoursework;
     await user.save();
   } catch (error) {
     if (error.status === UNAUTHORIZED) {
@@ -79,7 +79,7 @@ const checkUsersGrades = async (user) => {
 
 const handleUser = async (user) => {
   user.nextCheckTimestamp = minutesFromNow(POLLING_FREQUENCY_MINS);
-  await user.save();
+  await user.save(); // Avoids a race condition with frequent polling.
   await checkUsersGrades(user);
 };
 

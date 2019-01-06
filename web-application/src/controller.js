@@ -32,7 +32,9 @@ const subscribeUser = async (req, res, next) => {
     username,
     password,
     email,
-    latestGrades: courses,
+    latestGrades: {
+      coursework: courses,
+    },
     nextCheckTimestamp: new Date(),
   };
 
