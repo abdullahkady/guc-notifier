@@ -45,3 +45,12 @@ $ cd <PROJECT_DIRECTORY>/ && npm install
 $ cd <PROJECT_DIRECTORY>/ && npm start
 ```
 You're done ! Open up your browser, and visit `localhost` on the port specified for the web-application
+
+## Usage with Docker
+You can run a container out of each application's image, by going into the application directory's, and running:
+```bash
+$ docker container build -t <CUSTOM_TAG> .
+$ docker container run <CUSTOM_TAG>
+```
+However, that way you will need to create a custom docker-network, so that your 3 applications can communicate successfully, and expose only the web-application to the host machine; using the port flag while running `-p <HOST_PORT>:<CONTAINER_PORT>`
+
