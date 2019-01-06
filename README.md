@@ -54,3 +54,15 @@ $ docker container run <CUSTOM_TAG>
 ```
 However, that way you will need to create a custom docker-network, so that your 3 applications can communicate successfully, and expose only the web-application to the host machine; using the port flag while running `-p <HOST_PORT>:<CONTAINER_PORT>`
 
+### Usage with docker-compose
+*Make your life easier using **docker-compose** !!*
+
+The [yaml file](https://github.com/AbdullahKady/guc-notifier/blob/master/docker-compose.yml) handles the configuration so that your applications will have their own network, and expose the needed ports.
+
+*NOTE:* The `compose` file is setup assuming all the 3 projects exist in the same directory, change the `build` path for each image accordingly.
+
+- Specify your enviroment variables for each application as stated above
+- Run `$ docker-compose up`
+  - Add an optional `--build` flag to make sure that the images will be **rebuilt**
+  - Add an optional `--detach` flag to detach the terminal from the docker-compose process
+- Open your browser and visit http://localhost
