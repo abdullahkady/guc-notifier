@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { encrypt } from '../utils';
 
-const courseWorkSchema = new mongoose.Schema(
+const courseWorkGradeSchema = new mongoose.Schema(
   {
     type: { type: String, required: true },
     grade: { type: Number, required: true },
@@ -10,11 +10,36 @@ const courseWorkSchema = new mongoose.Schema(
   { _id: false },
 );
 
-const gradesSchema = new mongoose.Schema(
+const courseWorkSchema = new mongoose.Schema(
   {
     code: { type: String },
     name: { type: String },
-    coursework: { type: [courseWorkSchema] },
+    coursework: { type: [courseWorkGradeSchema] },
+  },
+  { _id: false },
+);
+
+const transcriptCourseSchema = new mongoose.Schema(
+  {
+    course: {
+      code: { type: String },
+      name: { type: String },
+    },
+    grade: {
+      german: { type: Number },
+      american: { type: String },
+    },
+    creditHours: { type: Number },
+  },
+  { _id: false },
+);
+
+const transcriptSchema = new mongoose.Schema(
+  {
+    year: { type: String },
+    type: { type: String },
+    gpa: { type: Number },
+    courses: [transcriptCourseSchema],
   },
   { _id: false },
 );
@@ -28,7 +53,16 @@ const userSchema = new mongoose.Schema({
   },
   password: { type: String, required: true },
   email: { type: String },
-  latestGrades: { type: [gradesSchema] },
+  latestGrades: {
+    coursework: {
+      type: [courseWorkSchema],
+    },
+    transcript: {
+      default: null,
+      // Only store the latest entry (semster)
+      type: transcriptSchema,
+    },
+  },
   nextCheckTimestamp: { type: Date, index: true },
   createdAt: { type: Date, default: new Date() },
 });
