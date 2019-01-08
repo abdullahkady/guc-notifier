@@ -39,10 +39,10 @@ const subscribeUser = async (req, res, next) => {
   let coursework;
   let transcript;
   try {
-    [coursework, transcript] = await Promise.all(
+    [coursework, transcript] = await Promise.all([
       getCourses(username, password),
       getLatestTranscriptEntry(username, password),
-    );
+    ]);
   } catch (err) {
     return next(err);
   }
