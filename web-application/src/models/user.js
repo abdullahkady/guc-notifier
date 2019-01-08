@@ -36,7 +36,7 @@ const transcriptCourseSchema = new mongoose.Schema(
 
 const transcriptSchema = new mongoose.Schema(
   {
-    year: { type: String },
+    year: { type: Number },
     type: { type: String },
     gpa: { type: Number },
     courses: [transcriptCourseSchema],
