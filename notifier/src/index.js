@@ -6,6 +6,7 @@ import {
   mongoConnectionOptions,
   USERS_CHECK_INTERVAL_SECS,
   COURSEWORK_API_URI,
+  TRANSCRIPT_API_URI,
   POLLING_FREQUENCY_MINS,
 } from './config';
 import User from './user';
