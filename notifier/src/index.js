@@ -25,6 +25,21 @@ const getCourses = async (username, password) => {
   }
 };
 
+const getLatestTranscriptEntry = async (username, password) => {
+  try {
+    const { data } = await axios.post(TRANSCRIPT_API_URI, { username, password }, {});
+    return data.transcript.semesters.pop(); // Get the latest entry only
+  } catch ({ response }) {
+    const error = new Error();
+    const { status } = response;
+    if (status === UNAUTHORIZED) {
+      error.message = 'Invalid credentials';
+    }
+    error.status = status;
+    throw error;
+  }
+};
+
 const compareGrades = (oldCourses, newCourses) => {
   const result = [];
   newCourses.forEach((newCourse) => {
@@ -59,7 +74,7 @@ const compareGrades = (oldCourses, newCourses) => {
 
 const minutesFromNow = minutes => new Date(new Date().getTime() + minutes * 60000);
 
-const checkUsersGrades = async (user) => {
+const fetchUserCoursework = async (user) => {
   try {
     const retrievedCoursework = await getCourses(user.username, await user.getPlainTextPassword());
     const newGrades = compareGrades(user.latestGrades.coursework, retrievedCoursework);
@@ -78,10 +93,13 @@ const checkUsersGrades = async (user) => {
   }
 };
 
+const fetchUserTranscript = async (user) => {};
+
 const handleUser = async (user) => {
   user.nextCheckTimestamp = minutesFromNow(POLLING_FREQUENCY_MINS);
   await user.save(); // Avoids a race condition with frequent polling.
-  await checkUsersGrades(user);
+  // What's the point of the next line? just making peace with my conscious :D
+  await Promise.all([fetchUserTranscript(user), fetchUserCoursework(user)]);
 };
 
 const handleReadyUsers = async () => {
