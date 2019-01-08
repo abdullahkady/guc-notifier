@@ -25,7 +25,7 @@ form.addEventListener('submit', e => {
     .then(response => {
       swal(
         'All done!',
-        'Thanks for subscribing! You will recieve a message whenever new grades are posted.',
+        'Thanks for subscribing! You will receive a message whenever new grades are posted.',
         'success',
       );
     })

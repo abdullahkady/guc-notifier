@@ -60,14 +60,14 @@ const minutesFromNow = minutes => new Date(new Date().getTime() + minutes * 6000
 
 const checkUsersGrades = async (user) => {
   try {
-    const retrivedCoursework = await getCourses(user.username, await user.getPlainTextPassword());
-    const newGrades = compareGrades(user.latestGrades.coursework, retrivedCoursework);
+    const retrievedCoursework = await getCourses(user.username, await user.getPlainTextPassword());
+    const newGrades = compareGrades(user.latestGrades.coursework, retrievedCoursework);
 
     if (newGrades.length > 0) {
       await emailNewGrades(user.email, newGrades);
     }
 
-    user.latestGrades.coursework = retrivedCoursework;
+    user.latestGrades.coursework = retrievedCoursework;
     await user.save();
   } catch (error) {
     if (error.status === UNAUTHORIZED) {

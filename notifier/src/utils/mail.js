@@ -4,7 +4,7 @@ import { SENDGRID_API_KEY, applicationEmailAddress } from '../config';
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 const emailUnsubscriptionNotification = (email) => {
-  const bodyContent = "<h2>You will not recieve anymore messages from us!</h2> <br /> <p>If you didn't unsubscribe purposefully, then your GUC password has expired/changed, please resubscribe again to re-use the service.</p>";
+  const bodyContent = "<h2>You will not receive anymore messages from us!</h2> <br /> <p>If you didn't unsubscribe purposefully, then your GUC password has expired/changed, please resubscribe again to re-use the service.</p>";
   const message = {
     to: email,
     from: applicationEmailAddress,

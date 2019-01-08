@@ -9,9 +9,9 @@ const testEmail = (email) => {
 
 const encrypt = (text) => {
   const cipher = crypto.createCipher('aes-256-cbc', ENCRYPTION_SECRET);
-  let crypted = cipher.update(text, 'utf8', 'hex');
-  crypted += cipher.final('hex');
-  return crypted;
+  let encrypted = cipher.update(text, 'utf8', 'hex');
+  encrypted += cipher.final('hex');
+  return encrypted;
 };
 
 export { encrypt, testEmail };

@@ -59,7 +59,7 @@ const userSchema = new mongoose.Schema({
     },
     transcript: {
       default: null,
-      // Only store the latest entry (semster)
+      // Only store the latest entry (semester)
       type: transcriptSchema,
     },
   },
