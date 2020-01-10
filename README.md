@@ -9,14 +9,14 @@
 ## Introduction
 
 The project is built in a microservice-like architecture, where it consists of 3 independant applications :
-- [GUC-API](https://github.com/AbdullahKady/guc-api)
+- [GUC REST Wrapper](https://github.com/AbdullahKady/guc-rest-api-wrapper)
 - [Notifier](https://github.com/AbdullahKady/guc-notifier/tree/master/notifier)
 - [Web-application](https://github.com/AbdullahKady/guc-notifier/tree/master/web-application)
 
 ## Acknowledgement
 
 Special thanks to [A.R Maged](https://github.com/ar-maged) for his [graphql-guc project](https://github.com/ar-maged/graphql-guc).
-His parser source code is used in [the API](https://github.com/AbdullahKady/guc-api/tree/master/src/parser) to parse the GUC's API response.
+His parser source code is used in the [API wrapper](https://github.com/AbdullahKady/guc-rest-api-wrapper/tree/master/src/parser) to parse the GUC's API response.
 
 ## Technologies
 
@@ -27,7 +27,7 @@ His parser source code is used in [the API](https://github.com/AbdullahKady/guc-
 
 ## Usage
 
-- Clone the repo, as well as the [API](https://github.com/AbdullahKady/guc-api)
+- Clone the repo, as well as the [API](https://github.com/AbdullahKady/guc-rest-api-wrapper)
 - Install each of the 3 application's dependencies:
 ```bash
 $ cd <PROJECT_DIRECTORY>/ && npm install
